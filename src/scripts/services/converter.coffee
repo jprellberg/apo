@@ -141,15 +141,14 @@ class Converter extends Service
 					# add states
 					states = @getAptBlockRows("states", aptCode)
 					for stateLabel in states
-						stateLabel = stateLabel.split(" ")[0]
-						if @isPartOfString("[initial]", stateLabel) or @isPartOfString("[initial=\"true\"]", stateLabel)
+						if @isPartOfString("[initial]", stateLabel) or @isPartOfString("initial=\"true\"", stateLabel)
 							initial = true
-							stateLabel = stateLabel.replace("[initial]", "").replace("[initial=\"true\"]", "")
 						else
 							initial = false
-						state = new State({label: stateLabel})
+						stateName = stateLabel.split("[")[0]
+						state = new State({label: stateName})
 						net.addState(state)
-						net.setInitState(net.getNodeByText(stateLabel)) if initial
+						net.setInitState(net.getNodeByText(stateName)) if initial
 
 					# add edges
 					edges = @getAptBlockRows("arcs", aptCode)
