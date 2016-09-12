@@ -15,7 +15,7 @@ class @ExaminePn extends @Analyzer
 		aptNet = converterService.getAptFromNet(currentNet)
 		apt.examinePn(aptNet).then (response) ->
 			outputElements.splice(0) while outputElements.length > 0 # clear outputElements
-			for test, result of response.data
+			for test, result of response.data.moduleReturnValues
 				result = "Yes" if result is true
 				result = "No" if result is false
 				outputElements.push(

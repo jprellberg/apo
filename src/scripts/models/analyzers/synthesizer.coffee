@@ -81,7 +81,7 @@ class @Synthesizer extends @Analyzer
 			options.push(aptOption)
 		apt.getSynthesizedNet(aptNet, options)
 		.then (response) ->
-			aptPn = response.data.pn
+			aptPn = response.data.moduleReturnValues.pn
 			if response.data.success
 				pn = converterService.getNetFromApt(aptPn)
 				pn.name = inputOptions[0].value
